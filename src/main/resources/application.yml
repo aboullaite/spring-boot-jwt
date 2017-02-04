@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3334/asfim?useSSL=false
+    username: asfim
+    password: 98U5mJY566
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+      naming:
+        strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect

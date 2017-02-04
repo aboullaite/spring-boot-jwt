@@ -1,0 +1,20 @@
+phpmyadmin:
+   image: corbinu/docker-phpmyadmin
+   ports :
+    - "8082:80"
+   environment:
+    - MYSQL_USERNAME=root
+    - MYSQL_PASSWORD=98U5mJY566
+   links:
+    - database:mysql
+database:
+  image: mysql:5.5
+  ports:
+   - "3334:3306"
+  environment:
+     - MYSQL_ROOT_PASSWORD=98U5mJY566
+     - MYSQL_DATABASE=asfim
+     - MYSQL_USER=asfim
+     - MYSQL_PASSWORD=98U5mJY566
+  volumes:
+     - ./data:/var/lib/mysql

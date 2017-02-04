@@ -1,7 +1,7 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3334/asfim?useSSL=false
-    username: asfim
+    url: jdbc:mysql://localhost:3334/spring-jwt?useSSL=false
+    username: spring-jwt
     password: 98U5mJY566
   jpa:
     show-sql: true

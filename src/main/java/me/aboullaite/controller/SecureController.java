@@ -1,32 +1,30 @@
 package me.aboullaite.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import me.aboullaite.model.User;
 import me.aboullaite.service.UserService;
 
 @RestController
 @RequestMapping("/secure")
+@RequiredArgsConstructor
 public class SecureController {
 
-	@Autowired
-	private UserService userService;
+	private final UserService userService;
 
 	@RequestMapping("/user/users")
 	public String loginSuccess() {
 		return "Login Successful!";
 	}
 
-	@RequestMapping(value = "/user/email", method = RequestMethod.POST)
+	@PostMapping("/user/email")
 	public User findByEmail(@RequestBody String email) {
 		return userService.findByEmail(email);
 	}
 
-	@RequestMapping(value = "/user/update", method = RequestMethod.POST)
+	@PostMapping("/user/update")
 	public User updateUser(@RequestBody User user) {
 		return userService.save(user);
 	}

@@ -1,6 +1,8 @@
 package me.aboullaite.service.impl;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Service;
 
 import me.aboullaite.dao.UserDao;
@@ -8,10 +10,10 @@ import me.aboullaite.model.User;
 import me.aboullaite.service.UserService;
 
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-	@Autowired
-	private UserDao userDao;
+	private final UserDao userDao;
 
 	public User save(User user) {
 		return userDao.save(user);

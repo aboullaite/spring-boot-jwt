@@ -4,12 +4,9 @@ import java.util.Date;
 
 import javax.servlet.ServletException;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import me.aboullaite.model.User;
 import me.aboullaite.service.UserService;
@@ -20,20 +17,19 @@ import io.jsonwebtoken.SignatureAlgorithm;
 @CrossOrigin(origins = "http://localhost", maxAge = 3600)
 @RestController
 @RequestMapping("/user")
+@RequiredArgsConstructor
 public class UserController {
 
-	@Autowired
-	private UserService userService;
+	private final UserService userService;
 
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	@PostMapping("/register")
 	public User registerUser(@RequestBody User user) {
 		return userService.save(user);
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@PostMapping("/login")
 	public String login(@RequestBody User login) throws ServletException {
-
-		String jwtToken = "";
+		String jwtToken;
 
 		if (login.getEmail() == null || login.getPassword() == null) {
 			throw new ServletException("Please fill in username and password");
